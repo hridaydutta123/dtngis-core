@@ -31,8 +31,7 @@ public class MergeGis {
         featureCollector.displayAllFeatures(gisFeatures);
 
         // add method to group related gis features.
-        GisUtil.createGeoJSON(gisFeatures);
-//        GisUtil.writeToGeoJSON(, Paths.WORKING_DIR_TEMP);
+        GisUtil.writeToGeoJSON(GisUtil.createGeoJSON(gisFeatures), Paths.WORKING_DIR_TEMP, "out.json");
     }
 
     private static List<GisFeature> mergeGisFeatures(List<GisFeature> gisFeatures) {

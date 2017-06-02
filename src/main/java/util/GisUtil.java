@@ -219,13 +219,14 @@ public class GisUtil {
      * @param path
      */
     public static void writeToGeoJSON(JsonObject geoJson, String path, String fileName) {
-        
-        try (FileWriter file = new FileWriter(new File(path,fileName+".json"))) {
-             Gson gson = new GsonBuilder().create();
-             gson.toJson(geoJson,file);
-             } catch (IOException e) {
-                  e.printStackTrace();
-             }
+        try {
+            FileWriter fileWriter = new FileWriter(new File(path,fileName));
+            Gson gson = new GsonBuilder().create();
+            gson.toJson(geoJson,fileWriter);
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -244,7 +245,7 @@ public class GisUtil {
             properties.addProperty("FID", gisFeature.getProperties().getFID());
             properties.addProperty("TEXT", gisFeature.getProperties().getTEXT());
 
-            feature.addProperty("properties", new Gson().toJson(properties));
+            feature.add("properties", properties);
 
             JsonObject geometry = feature.get("geometry").getAsJsonObject();
             geometry.addProperty("type", gisFeature.getGeometryType());
