@@ -6,6 +6,7 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.operation.TransformException;
 import util.GisFilesFinder;
 import util.GisUtil;
+import util.GisZip;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +32,8 @@ public class MergeGis {
         featureCollector.displayAllFeatures(gisFeatures);
 
         // add method to group related gis features.
-        GisUtil.writeToGeoJSON(GisUtil.createGeoJSON(gisFeatures), Paths.WORKING_DIR_TEMP, "out.json");
+        GisUtil.writeToGeoJSON(GisUtil.createGeoJSON(gisFeatures), Paths.WORKING_DIR_TEMP, "out.geojson");
+        GisZip.createZip(Paths.WORKING_DIR_TEMP, "out.geojson", "out.zip");
     }
 
     private static List<GisFeature> mergeGisFeatures(List<GisFeature> gisFeatures) {

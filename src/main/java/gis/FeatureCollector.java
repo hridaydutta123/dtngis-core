@@ -3,11 +3,10 @@ package gis;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.sun.deploy.util.SyncAccess;
 import constants.Constants;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.operation.TransformException;
-import util.GisZipReader;
+import util.GisZip;
 import util.Util;
 
 import java.io.File;
@@ -39,7 +38,7 @@ public class FeatureCollector {
             String createLat = getLatFromFileName(fileName);
             String createLon = getLonFromFileName(fileName);
 
-            JsonObject geoJson = GisZipReader.getGeoJsonFromZip(file);
+            JsonObject geoJson = GisZip.getGeoJsonFromZip(file);
             JsonArray features = geoJson.getAsJsonArray("features");
 
             for(JsonElement feature:features) {

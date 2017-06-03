@@ -7,6 +7,8 @@ import gis.GISCoordinate;
 import gis.GisFeature;
 import gis.Properties;
 import org.geotools.geometry.jts.JTSFactoryFinder;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.operation.TransformException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -233,9 +235,9 @@ public class GisUtil {
      * Create a geojson
      * @param gisFeatures
      */
-    public static JsonObject createGeoJSON(List<GisFeature> gisFeatures) {
+    public static JsonObject createGeoJSON(List<GisFeature> gisFeatures) throws FactoryException, TransformException {
         JsonParser jsonParser = new JsonParser();
-        JsonObject  jsonObject = jsonParser.parse(Constants.GEOJSON_EPSG4326).getAsJsonObject();
+        JsonObject  jsonObject = jsonParser.parse(Constants.GEOJSON_EPSG3857).getAsJsonObject();
 
         JsonObject feature =  jsonParser.parse(Constants.GEOJSON_FEATURE).getAsJsonObject();
         JsonArray featuresArray = new JsonArray();
@@ -253,6 +255,7 @@ public class GisUtil {
             JsonArray coordinateArray = new JsonArray();
             for(GISCoordinate coordinate:gisFeature.getCoordinates()) {
                 JsonArray coordinatePair = new JsonArray();
+                coordinate.convertEPSG4326toEPSG3857();
                 coordinatePair.add(new JsonPrimitive(coordinate.getX()));
                 coordinatePair.add(new JsonPrimitive(coordinate.getY()));
                 coordinateArray.add(coordinatePair);
