@@ -252,6 +252,7 @@ public class GisUtil {
             JsonObject geometry = feature.get("geometry").getAsJsonObject();
             geometry.addProperty("type", gisFeature.getGeometryType());
 
+            JsonArray coordinateArrayCover = new JsonArray(); // need to check why we need this
             JsonArray coordinateArray = new JsonArray();
             for(GISCoordinate coordinate:gisFeature.getCoordinates()) {
                 JsonArray coordinatePair = new JsonArray();
@@ -260,7 +261,8 @@ public class GisUtil {
                 coordinatePair.add(new JsonPrimitive(coordinate.getY()));
                 coordinateArray.add(coordinatePair);
             }
-            geometry.add("coordinates", coordinateArray);
+            coordinateArrayCover.add(coordinateArray);
+            geometry.add("coordinates", coordinateArrayCover);
             feature.add("geometry", geometry);
             featuresArray.add(feature);
         }
