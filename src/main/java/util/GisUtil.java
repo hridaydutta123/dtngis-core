@@ -21,6 +21,8 @@ import java.io.IOException;
  */
 public class GisUtil {
 
+    private static final String TAG = "GisUtil ";
+
     /**
      * Create a JTS Point from GisFeature
      * @param feature
@@ -239,10 +241,10 @@ public class GisUtil {
         JsonParser jsonParser = new JsonParser();
         JsonObject  jsonObject = jsonParser.parse(Constants.GEOJSON_EPSG3857).getAsJsonObject();
 
-        JsonObject feature =  jsonParser.parse(Constants.GEOJSON_FEATURE).getAsJsonObject();
         JsonArray featuresArray = new JsonArray();
 
         for(GisFeature gisFeature:gisFeatures) {
+            JsonObject feature =  jsonParser.parse(Constants.GEOJSON_FEATURE).getAsJsonObject();
             JsonObject properties =  feature.get("properties").getAsJsonObject();
             properties.addProperty("FID", gisFeature.getProperties().getFID());
             properties.addProperty("TEXT", gisFeature.getProperties().getTEXT());
@@ -268,7 +270,7 @@ public class GisUtil {
         }
 
         jsonObject.add("features", featuresArray);
-        System.out.print(jsonObject);
+        System.out.print(Constants.MSG_DEBUG + TAG + jsonObject);
         return jsonObject;
     }
 }
