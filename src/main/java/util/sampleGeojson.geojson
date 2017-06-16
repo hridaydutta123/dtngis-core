@@ -1,0 +1,44 @@
+{
+  "crs":{
+    "type":"name",
+    "properties":{
+      "name":"urn:ogc:def:crs:EPSG::3857"
+    }
+  },
+  "type":"FeatureCollection",
+  "features":[
+    {
+      "type":"Feature",
+      "properties":{
+        "FID":123,
+        "TEXT":"yolo",
+        "attaches":[
+
+        ]
+      },
+      "geometry":{
+        "type":"Polygon",
+        "coordinates":[
+          [
+            [
+              9858378,
+              3509112
+            ],
+            [
+              9667768,
+              2335497.5
+            ],
+            [
+              10419483,
+              2280492
+            ],
+            [
+              9858378,
+              3509112
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
