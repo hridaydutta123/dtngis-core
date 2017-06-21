@@ -6,5 +6,5 @@ package constants;
 public class Paths {
     public static final String WORKING_DIR_PC = "/home/alarm/DMS/sync/";
     public static final String WORKING_DIR_MOB = "/DMS/Working/";
-    public static final String WORKING_DIR_TEMP = "/home/arka/";
+    public static final String WORKING_DIR_TEMP = "/home/hridoy/disarm/gis/Working/";
 }

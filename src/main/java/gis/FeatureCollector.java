@@ -30,7 +30,7 @@ public class FeatureCollector {
         List<GisFeature> gisFeatures = new ArrayList<GisFeature>();
 
         for(File file:gisFiles) {
-            String fileName = file.getName().substring(0, file.getName().indexOf('.'));
+            String fileName = file.getName().replace(".zip","");
 
             String source = getSourceFromFileName(fileName);
             String timestamp = getTimestampFromFileName(fileName);
